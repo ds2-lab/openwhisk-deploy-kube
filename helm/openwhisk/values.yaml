@@ -47,19 +47,24 @@ whisk:
   # See the "Configuring OpenWhisk section" of the docs/k8s-*.md that matches
   # your cluster type for details on what values to provide and how to get them.
   ingress:
-    apiHostName: ""
-    apiHostPort: 31001
+    apiHostName: openwhisk.serverless-mds-cluster-243065a7719552ad2f4388dc81e46642-0000.us-east.containers.appdomain.cloud
+    apiHostPort: 443
     apiHostProto: "https"
-    type: NodePort
+    type: Standard
     annotations:
-      nginx.ingress.kubernetes.io/proxy-body-size: "50m"
-    domain: "domain"
+      kubernetes.io/ingress.class: public-iks-k8s-nginx
+      nginx.ingress.kubernetes.io/use-regex: "true"
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+         proxy_set_header X-Request-ID $request_id;
+      nginx.ingress.kubernetes.io/proxy-body-size: 50m
+      nginx.ingress.kubernetes.io/proxy-read-timeout: "75"
+    domain: openwhisk.serverless-mds-cluster-243065a7719552ad2f4388dc81e46642-0000.us-east.containers.appdomain.cloud
     awsSSL: "false"
     useInternally: false
     tls:
-      enabled: false
+      enabled: true
       createsecret: false
-      secretname: "ow-ingress-tls-secret"
+      secretname: "serverless-mds-cluster-243065a7719552ad2f4388dc81e46642-0000"
       secrettype: "type"
       crt: "crt"
       key: "key"
