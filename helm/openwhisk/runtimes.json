@@ -280,7 +280,37 @@
                     "attachmentType": "text/plain"
                 }
             }
-        ]
+        ],
+		"namenode": [
+			{
+				"kind": "java:8",
+                "default": true,
+                "image": {
+                    "prefix": "scusemua",
+                    "name": "java8action",
+                    "tag": "latest"
+                },
+                "deprecated": false,
+                "attached": {
+                    "attachmentName": "jarfile",
+                    "attachmentType": "application/java-archive"
+                },
+                "requireMain": true,
+				"stemCells": [
+					{
+						"initialCount": 2,
+						"memory": "512 MB", 
+						"reactive": {
+							"minCount": 3,
+							"maxCount": 3,
+							"ttl": "5 minutes",
+							"threshold": 1,
+							"increment": 0
+						}
+					}
+				]
+			}
+		],
     },
     "blackboxes": [
         {
