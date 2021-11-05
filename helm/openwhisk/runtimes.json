@@ -283,7 +283,7 @@
         ],
 		"namenode": [
 			{
-				"kind": "java:8",
+				"kind": "namenode:1",
                 "default": true,
                 "image": {
                     "prefix": "scusemua",
