@@ -301,10 +301,10 @@
 						"initialCount": 2,
 						"memory": "512 MB", 
 						"reactive": {
-							"minCount": 3,
-							"maxCount": 3,
-							"ttl": "5 minutes",
-							"threshold": 512,
+							"minCount": 2,
+							"maxCount": 5,
+							"ttl": "3 minutes",
+							"threshold": 2,
 							"increment": 1
 						}
 					}
