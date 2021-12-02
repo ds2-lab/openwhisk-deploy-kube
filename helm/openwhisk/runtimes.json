@@ -16,7 +16,7 @@
                 },
                 "stemCells": [
                     {
-                        "count": 2,
+                        "count": 0,
                         "memory": "256 MB"
                     }
                 ]
