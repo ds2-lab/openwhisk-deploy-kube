@@ -81,12 +81,12 @@ whisk:
     actions:
       time:
         min: "50ms"
-        max: "5m"
-        std: "1m"
+        max: "10m"
+        std: "3m"
       memory:
-        min: "128m"
-        max: "512m"
-        std: "256m"
+        min: "256m"
+        max: "2048m"
+        std: "1024m"
       concurrency:
         min: 1
         max: 100
@@ -126,8 +126,9 @@ whisk:
         retentionBytes: ""
         retentionMs: ""
   containerPool:
-    userMemory: "2048m"
+    userMemory: "32000m"
     akkaClient: true 
+    concurrentPeekFactor: 0.95
   runtimes: "runtimes.json"
   testing:
     includeTests: true
@@ -271,10 +272,10 @@ invoker:
   imageTag: "ed3f76e"
   imagePullPolicy: "IfNotPresent"
   restartPolicy: "Always"
-  runtimeDeleteTimeout: "30 seconds"
+  runtimeDeleteTimeout: "5 minutes"
   port: 8080
   options: "-Dwhisk.spi.LogStoreProvider=org.apache.openwhisk.core.containerpool.logging.LogDriverLogStoreProvider"
-  jvmHeapMB: "512"
+  jvmHeapMB: "1024"
   jvmOptions: ""
   loglevel: "INFO"
   containerFactory:
@@ -682,4 +683,4 @@ elasticsearch:
   password: "admin"
 
 akka:
-  actorSystemTerminateTimeout: "30 s"
+  actorSystemTerminateTimeout: "3 minutes"
