@@ -85,7 +85,7 @@ whisk:
         std: "1m"
       memory:
         min: "128m"
-        max: "512m"
+        max: "2048m"
         std: "256m"
       concurrency:
         min: 1
@@ -126,7 +126,7 @@ whisk:
         retentionBytes: ""
         retentionMs: ""
   containerPool:
-    userMemory: "2048m"
+    userMemory: "32000m"
     akkaClient: true 
   runtimes: "runtimes.json"
   testing:
