@@ -83,7 +83,7 @@ whisk:
         std: "1m"
       memory:
         min: "128m"
-        max: "2048m"
+        max: "8192m"
         std: "256m"
       concurrency:
         min: 1
@@ -228,7 +228,7 @@ db:
   actionsTable: "test_whisks"
   authsTable: "test_subjects"
   persistence:
-    size: 3Gi
+    size: 6Gi
 
 # CouchDB, ElasticSearch
 activationStoreBackend: "CouchDB"
@@ -272,7 +272,7 @@ invoker:
   runtimeDeleteTimeout: "30 seconds"
   port: 8080
   options: "-Dwhisk.spi.LogStoreProvider=org.apache.openwhisk.core.containerpool.logging.LogDriverLogStoreProvider"
-  jvmHeapMB: "512"
+  jvmHeapMB: "1024"
   jvmOptions: ""
   loglevel: "INFO"
   containerFactory:
