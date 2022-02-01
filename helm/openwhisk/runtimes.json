@@ -2,26 +2,12 @@
     "runtimes": {
         "nodejs": [
             {
-                "kind": "nodejs:10",
-                "default": true,
-                "image": {
-                    "prefix": "openwhisk",
-                    "name": "action-nodejs-v10",
-                    "tag": "1.18.0"
-                },
-                "deprecated": false,
-                "attached": {
-                    "attachmentName": "codefile",
-                    "attachmentType": "text/plain"
-                }
-            },
-            {
                 "kind": "nodejs:12",
                 "default": false,
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-nodejs-v12",
-                    "tag": "1.18.0"
+                    "tag": "1.19.0"
                 },
                 "deprecated": false,
                 "attached": {
@@ -31,11 +17,11 @@
             },
             {
                 "kind": "nodejs:14",
-                "default": false,
+                "default": true,
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-nodejs-v14",
-                    "tag": "1.18.0"
+                    "tag": "1.19.0"
                 },
                 "deprecated": false,
                 "attached": {
@@ -46,26 +32,12 @@
         ],
         "python": [
             {
-                "kind": "python:2",
-                "default": false,
-                "image": {
-                    "prefix": "openwhisk",
-                    "name": "python2action",
-                    "tag": "1.13.0-incubating"
-                },
-                "deprecated": false,
-                "attached": {
-                    "attachmentName": "codefile",
-                    "attachmentType": "text/plain"
-                }
-            },
-            {
                 "kind": "python:3",
                 "default": true,
                 "image": {
                     "prefix": "openwhisk",
-                    "name": "actionloop-python-v3.7",
-                    "tag": "1.16.0"
+                    "name": "action-python-v3.7",
+                    "tag": "1.17.0"
                 },
                 "deprecated": false,
                 "attached": {
@@ -81,7 +53,7 @@
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-swift-v4.2",
-                    "tag": "1.16.0"
+                    "tag": "1.17.0"
                 },
                 "deprecated": false,
                 "attached": {
@@ -95,7 +67,7 @@
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-swift-v5.1",
-                    "tag": "1.16.0"
+                    "tag": "1.17.0"
                 },
                 "deprecated": false,
                 "attached": {
@@ -109,7 +81,21 @@
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-swift-v5.3",
-                    "tag": "1.16.0"
+                    "tag": "1.17.0"
+                },
+                "deprecated": false,
+                "attached": {
+                    "attachmentName": "codefile",
+                    "attachmentType": "text/plain"
+                }
+            },
+            {
+                "kind": "swift:5.4",
+                "default": false,
+                "image": {
+                    "prefix": "openwhisk",
+                    "name": "action-swift-v5.4",
+                    "tag": "1.17.0"
                 },
                 "deprecated": false,
                 "attached": {
@@ -125,7 +111,7 @@
                 "image": {
                     "prefix": "openwhisk",
                     "name": "java8action",
-                    "tag": "1.16.0"
+                    "tag": "1.17.0"
                 },
                 "deprecated": false,
                 "attached": {
@@ -143,7 +129,7 @@
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-php-v7.3",
-                    "tag": "1.16.0"
+                    "tag": "1.17.0"
                 },
                 "attached": {
                     "attachmentName": "codefile",
@@ -157,7 +143,7 @@
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-php-v7.4",
-                    "tag": "1.16.0"
+                    "tag": "1.17.0"
                 },
                 "attached": {
                     "attachmentName": "codefile",
@@ -171,7 +157,7 @@
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-php-v7.4",
-                    "tag": "1.16.0"
+                    "tag": "1.17.0"
                 },
                 "attached": {
                     "attachmentName": "codefile",
@@ -191,7 +177,7 @@
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-ruby-v2.5",
-                    "tag": "1.16.0"
+                    "tag": "1.17.0"
                 }
             }
         ],
@@ -223,7 +209,7 @@
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-rust-v1.34",
-                    "tag": "1.2.0"
+                    "tag": "1.3.0"
                 }
             }
         ],
@@ -236,7 +222,7 @@
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-dotnet-v2.2",
-                    "tag": "1.15.0"
+                    "tag": "1.16.0"
                 },
                 "attached": {
                     "attachmentName": "codefile",
@@ -251,7 +237,7 @@
                 "image": {
                     "prefix": "openwhisk",
                     "name": "action-dotnet-v3.1",
-                    "tag": "1.15.0"
+                    "tag": "1.16.0"
                 },
                 "attached": {
                     "attachmentName": "codefile",
@@ -277,7 +263,7 @@
         ],
 		"namenode": [
 			{
-				"kind": "namenode:1",
+				"kind": "generic-namenode",
                 "default": true,
                 "image": {
                     "prefix": "scusemua",
@@ -293,9 +279,9 @@
 				"stemCells": [
 					{
 						"initialCount": 6,
-						"memory": "1000 MB", 
+						"memory": "1280 MB", 
 						"reactive": {
-							"minCount": 4,
+							"minCount": 6,
 							"maxCount": 50,
 							"ttl": "3 minutes",
 							"threshold": 2,
