@@ -47,8 +47,8 @@ whisk:
   # See the "Configuring OpenWhisk section" of the docs/k8s-*.md that matches
   # your cluster type for details on what values to provide and how to get them.
   ingress:
-    apiHostName: 34.138.142.140
-    apiHostPort: 80
+    apiHostName: 34.86.224.47
+    apiHostPort: 443
     apiHostProto: "http"
     type: NodePort
     annotations:
@@ -72,18 +72,18 @@ whisk:
     guest: "23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP"
   systemNameSpace: "/whisk.system"
   limits:
-    actionsInvokesPerminute: 6000
-    actionsInvokesConcurrent: 6000
-    triggersFiresPerminute: 6000
+    actionsInvokesPerminute: 100000
+    actionsInvokesConcurrent: 100000
+    triggersFiresPerminute: 100000
     actionsSequenceMaxlength: 600
     actions:
       time:
         min: "50ms"
-        max: "5m"
-        std: "1m"
+        max: "10m"
+        std: "2m"
       memory:
         min: "128m"
-        max: "8192m"
+        max: "25000m"
         std: "256m"
       concurrency:
         min: 1
@@ -91,14 +91,15 @@ whisk:
         std: 1
       log:
         min: "0m"
-        max: "10m"
-        std: "10m"
+        max: "15m"
+        std: "15m"
     activation:
       payload:
         max: "1048576"
   loadbalancer:
     blackboxFraction: "10%"
     timeoutFactor: 2
+    # timeoutAddon: "15 minutes"
   # Kafka configuration. For all sub-fields a value of "" means use the default from application.conf
   kafka:
     replicationFactor: ""
@@ -124,12 +125,16 @@ whisk:
         retentionBytes: ""
         retentionMs: ""
   containerPool:
-    userMemory: "13654m"
-    akkaClient: true 
+    akkaClient: true
+    userMemory: "650000m" 
   runtimes: "runtimes.json"
   testing:
     includeTests: true
     includeSystemTests: false
+  containerProxy:
+    timeouts:
+        pauseGrace: "30 minutes"    # time to wait for new work before pausing the container
+        idleContainer: "60 minutes" # how long before reclaiming a warm container 
   versions:
     openwhisk:
       buildDate: "2021-08-17-05:51:11Z"
@@ -201,7 +206,7 @@ kafka:
   connect_string: null
   port: 9092
   persistence:
-    size: 512Mi
+    size: 8192Mi
 
 # Database configuration
 db:
@@ -228,7 +233,7 @@ db:
   actionsTable: "test_whisks"
   authsTable: "test_subjects"
   persistence:
-    size: 6Gi
+    size: 32Gi
 
 # CouchDB, ElasticSearch
 activationStoreBackend: "CouchDB"
@@ -255,24 +260,26 @@ controller:
   imageName: "openwhisk/controller"
   imageTag: "3e6138d"
   imagePullPolicy: "IfNotPresent"
-  replicaCount: 1
+  replicaCount: 2
   restartPolicy: "Always"
   port: 8080
   options: ""
-  jvmHeapMB: "1024"
+  jvmHeapMB: "2048"
   jvmOptions: ""
   loglevel: "INFO"
 
 # Invoker configurations
+# "2.0vCPU7.5GBRAM" "4vcpu" "4vCPU-31GB" "4vcpu-16gb" "4vcpu-7.5gb" "3vcpu-7.5gb" "3vcpu-12.5gb" "3.75vcpu-12.5gb" "3.75vcpu-14.5gb" "1.5vcpu-9gb" "2.5vcpu-9gb"
+# "3.75vcpu-15.5gb" "3.75vcpu-15gb" "5vcpu-21gb" "5vcpu-20gb" "5vcpu-19gb" "0.8cpu-6gb" "0.8cpu-3gb" "0.5cpu-6gb" "1.5cpu-6gb" "0.75cpu-6gb" "1.25vcpu-9gb" "5.75vcpu-19gb"
 invoker:
   imageName: "scusemua/invoker"
-  imageTag: "1.5vcpu"
+  imageTag: "5vcpu-19gb" # "5vcpu-19gb"
   imagePullPolicy: "IfNotPresent"
   restartPolicy: "Always"
   runtimeDeleteTimeout: "30 seconds"
   port: 8080
   options: "-Dwhisk.spi.LogStoreProvider=org.apache.openwhisk.core.containerpool.logging.LogDriverLogStoreProvider"
-  jvmHeapMB: "1024"
+  jvmHeapMB: "2048"
   jvmOptions: ""
   loglevel: "INFO"
   containerFactory:
@@ -291,7 +298,7 @@ invoker:
           options: ""
     kubernetes:
       isolateUserActions: true
-      replicaCount: 1
+      replicaCount: 3
 
 # API Gateway configurations
 apigw:
