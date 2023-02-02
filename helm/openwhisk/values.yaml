@@ -208,7 +208,7 @@ kafka:
   connect_string: null
   port: 9092
   persistence:
-    size: 1Gi
+    size: 512Mi
 
 # Database configuration
 db:
