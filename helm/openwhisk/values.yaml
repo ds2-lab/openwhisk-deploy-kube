@@ -47,19 +47,21 @@ whisk:
   # See the "Configuring OpenWhisk section" of the docs/k8s-*.md that matches
   # your cluster type for details on what values to provide and how to get them.
   ingress:
-    apiHostName: 34.86.224.47
+    apiHostName: a6ac53c56b90f4f598929797575d3211-384507792.us-east-1.elb.amazonaws.com
     apiHostPort: 443
-    apiHostProto: "http"
-    type: NodePort
+    apiHostProto: "https"
+    type: LoadBalancer
     annotations:
-      #kubernetes.io/ingress.class: nginx
-      #nginx.ingress.kubernetes.io/use-regex: "true"
+      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+      service.beta.kubernetes.io/aws-load-balancer-ssl-ports: https-api
+      service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:iam::205616672683:server-certificate/ow-self-signed"
+      service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
       nginx.ingress.kubernetes.io/configuration-snippet: |
          proxy_set_header X-Request-ID $request_id;
       nginx.ingress.kubernetes.io/proxy-body-size: 50m
       nginx.ingress.kubernetes.io/proxy-read-timeout: "75"
     domain: "domain"
-    awsSSL: "false"
+    awsSSL: "true"
     useInternally: false
     tls:
       enabled: false
