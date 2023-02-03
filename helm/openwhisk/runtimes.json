@@ -261,7 +261,7 @@
 			"requireMain": true,
 			"stemCells": [{
 				"initialCount": 1,
-				"memory": "6000 MB",
+				"memory": "19000 MB",
 				"reactive": {
 					"minCount": 1,
 					"maxCount": 1,
