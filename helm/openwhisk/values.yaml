@@ -74,9 +74,9 @@ whisk:
     guest: "23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP"
   systemNameSpace: "/whisk.system"
   limits:
-    actionsInvokesPerminute: 100000
-    actionsInvokesConcurrent: 100000
-    triggersFiresPerminute: 100000
+    actionsInvokesPerminute: 999999
+    actionsInvokesConcurrent: 999999
+    triggersFiresPerminute: 999999
     actionsSequenceMaxlength: 600
     actions:
       time:
@@ -85,7 +85,7 @@ whisk:
         std: "2m"
       memory:
         min: "128m"
-        max: "25000m"
+        max: "45000m"
         std: "256m"
       concurrency:
         min: 1
@@ -128,7 +128,7 @@ whisk:
         retentionMs: ""
   containerPool:
     akkaClient: true
-    userMemory: "650000m" 
+    userMemory: "1840000m" 
   runtimes: "runtimes.json"
   testing:
     includeTests: true
@@ -208,7 +208,7 @@ kafka:
   connect_string: null
   port: 9092
   persistence:
-    size: 512Mi
+    size: 8196Mi
 
 # Database configuration
 db:
@@ -235,7 +235,7 @@ db:
   actionsTable: "test_whisks"
   authsTable: "test_subjects"
   persistence:
-    size: 6Gi
+    size: 64200Mi
 
 # CouchDB, ElasticSearch
 activationStoreBackend: "CouchDB"
@@ -262,7 +262,7 @@ controller:
   imageName: "openwhisk/controller"
   imageTag: "3e6138d"
   imagePullPolicy: "IfNotPresent"
-  replicaCount: 2
+  replicaCount: 1
   restartPolicy: "Always"
   port: 8080
   options: ""
@@ -272,10 +272,10 @@ controller:
 
 # Invoker configurations
 # "2.0vCPU7.5GBRAM" "4vcpu" "4vCPU-31GB" "4vcpu-16gb" "4vcpu-7.5gb" "3vcpu-7.5gb" "3vcpu-12.5gb" "3.75vcpu-12.5gb" "3.75vcpu-14.5gb" "1.5vcpu-9gb" "2.5vcpu-9gb"
-# "3.75vcpu-15.5gb" "3.75vcpu-15gb" "5vcpu-21gb" "5vcpu-20gb" "5vcpu-19gb" "0.8cpu-6gb" "0.8cpu-3gb" "0.5cpu-6gb" "1.5cpu-6gb" "0.75cpu-6gb" "1.25vcpu-9gb" "5.75vcpu-19gb"
+# "3.75vcpu-15.5gb" "3.75vcpu-15gb" "5vcpu-21gb" "5vcpu-20gb" "5vcpu-19gb" "0.8cpu-6gb" "0.8cpu-3gb" "0.5cpu-6gb" "1.5cpu-6gb" "0.75cpu-6gb" "1.25vcpu-9gb" "5.75vcpu-19gb" "15vcpu-19gb", "6.25vcpu-40gb"
 invoker:
   imageName: "scusemua/invoker"
-  imageTag: "5vcpu-19gb" # "5vcpu-19gb"
+  imageTag: "6.25vcpu-40gb" # "0.5cpu-6gb"
   imagePullPolicy: "IfNotPresent"
   restartPolicy: "Always"
   runtimeDeleteTimeout: "30 seconds"

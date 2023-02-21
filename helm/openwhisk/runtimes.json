@@ -260,11 +260,11 @@
 			},
 			"requireMain": true,
 			"stemCells": [{
-				"initialCount": 1,
-				"memory": "19000 MB",
+				"initialCount": 2,
+				"memory": "40000 MB",
 				"reactive": {
 					"minCount": 1,
-					"maxCount": 1,
+					"maxCount": 3,
 					"ttl": "3 minutes",
 					"threshold": 2,
 					"increment": 1
