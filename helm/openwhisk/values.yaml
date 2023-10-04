@@ -246,7 +246,7 @@ db:
   actionsTable: "test_whisks"
   authsTable: "test_subjects"
   persistence:
-    size: 16000Mi
+    size: 8196Mi
 
 # CouchDB, ElasticSearch
 activationStoreBackend: "CouchDB"
