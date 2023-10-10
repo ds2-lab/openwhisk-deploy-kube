@@ -47,14 +47,14 @@ whisk:
   # See the "Configuring OpenWhisk section" of the docs/k8s-*.md that matches
   # your cluster type for details on what values to provide and how to get them.
   ingress:
-    apiHostName: a6ac53c56b90f4f598929797575d3211-384507792.us-east-1.elb.amazonaws.com
-    apiHostPort: 443
+    apiHostName: aabbccddeeffgghhiijjkkllmmnnoopp-123456789.us-east-1.elb.amazonaws.com
+    apiHostPort: 80
     apiHostProto: "https"
     type: LoadBalancer
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
       service.beta.kubernetes.io/aws-load-balancer-ssl-ports: https-api
-      service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:iam::205616672683:server-certificate/ow-self-signed"
+      service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:iam::111222333444:server-certificate/ow-self-signed"
       service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
       nginx.ingress.kubernetes.io/configuration-snippet: |
          proxy_set_header X-Request-ID $request_id;
@@ -208,7 +208,7 @@ kafka:
   connect_string: null
   port: 9092
   persistence:
-    size: 8196Mi
+    size: 4Gi
 
 # Database configuration
 db:
@@ -235,7 +235,7 @@ db:
   actionsTable: "test_whisks"
   authsTable: "test_subjects"
   persistence:
-    size: 64200Mi
+    size: 4Gi
 
 # CouchDB, ElasticSearch
 activationStoreBackend: "CouchDB"
