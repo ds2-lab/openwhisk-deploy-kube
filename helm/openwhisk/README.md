@@ -21,6 +21,10 @@
 
 Apache OpenWhisk is an open source, distributed serverless platform that executes functions in response to events at any scale.
 
+## What is this branch?
+
+This is a fork of the `aws` branch of this repository. In this branch, we're using an updated version of OpenWhisk with some new features that may resolve some of the problems we faced when using OpenWhisk in the past. These include techniques/settings to manage resource limits built into OpenWhisk so that we don't have to attempt to enforce them ourselves.
+
 ## Introduction
 
 The [Apache OpenWhisk](https://openwhisk.apache.org/) serverless platform supports a programming model in which developers write functional logic (called Actions), in any supported programming language, that can be dynamically scheduled and run in response to associated events (via Triggers) from external sources (Feeds) or from HTTP requests.
