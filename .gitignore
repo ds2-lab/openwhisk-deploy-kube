@@ -2,3 +2,5 @@ kubernetes/nginx/certs
 myruntimes.json
 .DS_Store
 *~
+helm/openwhisk/values.yaml
+helm/openwhisk/cluster.yaml
