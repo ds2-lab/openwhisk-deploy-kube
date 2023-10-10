@@ -73,6 +73,7 @@ nodeAffinity:
         operator: NotIn
         values:
         - {{ .Values.affinity.invokerNodeLabel }}
+  preferredDuringSchedulingIgnoredDuringExecution:
   - weight: 80
     preference:
       matchExpressions:
